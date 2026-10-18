@@ -1,0 +1,688 @@
+<!DOCTYPE html>
+<html lang="id" class="scroll-smooth">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Ethernal Company — We Build Digital Experiences.</title>
+    <meta name="description" content="Independent digital studio specializing in high-end web development, UI/UX design, and digital solutions.">
+    <!-- Google Fonts -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@300;400;500;600;700;800&display=swap" rel="stylesheet">
+    <!-- Tailwind CSS CDN -->
+    <script src="https://cdn.tailwindcss.com"></script>
+    <script>
+        tailwind.config = {
+            theme: {
+                extend: {
+                    colors: {
+                        obsidian: '#090909',
+                        deepblack: '#111111',
+                        crimson: '#E11D2E',
+                        brightred: '#FF3045',
+                        softgray: '#A1A1AA',
+                        bordergray: '#292929'
+                    },
+                    fontFamily: {
+                        sans: ['"Plus Jakarta Sans"', 'system-ui', '-apple-system', 'sans-serif']
+                    }
+                }
+            }
+        }
+    </script>
+    <style>
+        ::-webkit-scrollbar {
+            width: 6px;
+        }
+        ::-webkit-scrollbar-track {
+            background: #090909;
+        }
+        ::-webkit-scrollbar-thumb {
+            background: #292929;
+            border-radius: 3px;
+        }
+        ::-webkit-scrollbar-thumb:hover {
+            background: #E11D2E;
+        }
+        .project-card:hover .project-img {
+            transform: scale(1.03);
+        }
+    </style>
+</head>
+<body class="bg-obsidian text-white font-sans antialiased selection:bg-crimson selection:text-white">
+
+    <!-- Toast Notification Container -->
+    <div id="toast-container" class="fixed bottom-6 right-6 z-50 flex flex-col gap-2 pointer-events-none"></div>
+
+    <!-- Navigation Bar -->
+    <header class="sticky top-0 z-40 bg-obsidian/90 backdrop-blur-md border-b border-bordergray transition-all duration-300">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 h-20 flex items-center justify-between">
+            <!-- Brand Logo with Custom Gothic Asset -->
+            <a href="#" class="flex items-center gap-3 group">
+                <img src="https://images.unsplash.com/photo-1618005182384-a83a8bd57fbe?auto=format&fit=crop&w=100&q=80" alt="Logo Ethernal" class="w-10 h-10 rounded-full border border-crimson object-cover" onerror="this.src='data:image/svg+xml;utf8,<svg xmlns=\'http://www.w3.org/2000/svg\' width=\'40\' height=\'40\'><circle cx=\'20\' cy=\'20\' r=\'20\' fill=\'%23E11D2E\'/></svg>'">
+                <!-- Menggunakan gambar Lambang Gothic yang disediakan -->
+                <div class="flex items-center gap-2">
+                    <img src="Lambang Gothic Ethernal Company.png" alt="Ethernal Logo" class="h-8 w-auto object-contain">
+                    <span class="font-extrabold text-xl tracking-wider text-white hidden sm:inline">ETHERNAL<span class="text-crimson">.</span></span>
+                </div>
+            </a>
+
+            <!-- Desktop Nav -->
+            <nav class="hidden md:flex items-center gap-8 font-medium text-sm text-softgray">
+                <a href="#work" class="hover:text-white transition">Work</a>
+                <a href="#services" class="hover:text-white transition">Services</a>
+                <a href="#about" class="hover:text-white transition">About</a>
+                <a href="#process" class="hover:text-white transition">Process</a>
+                <a href="#faq" class="hover:text-white transition">FAQ</a>
+                <a href="#contact" class="hover:text-white transition">Contact</a>
+            </nav>
+
+            <!-- CTA & Mobile Trigger -->
+            <div class="flex items-center gap-4">
+                <a href="#contact" class="hidden sm:inline-flex items-center justify-center px-5 py-2.5 bg-crimson hover:bg-brightred text-white text-xs font-bold uppercase tracking-wider rounded transition shadow-lg shadow-crimson/20">
+                    Let's Talk ↗
+                </a>
+                <button onclick="toggleMobileMenu()" class="md:hidden p-2 text-white focus:outline-none" aria-label="Menu">
+                    <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 6h16M4 12h16M4 18h16"/></svg>
+                </button>
+            </div>
+        </div>
+
+        <!-- Mobile Drawer -->
+        <div id="mobile-menu" class="hidden md:hidden bg-deepblack border-b border-bordergray px-6 py-6 space-y-4">
+            <a href="#work" onclick="toggleMobileMenu()" class="block text-sm font-medium text-softgray hover:text-white">Work</a>
+            <a href="#services" onclick="toggleMobileMenu()" class="block text-sm font-medium text-softgray hover:text-white">Services</a>
+            <a href="#about" onclick="toggleMobileMenu()" class="block text-sm font-medium text-softgray hover:text-white">About</a>
+            <a href="#process" onclick="toggleMobileMenu()" class="block text-sm font-medium text-softgray hover:text-white">Software Process</a>
+            <a href="#faq" onclick="toggleMobileMenu()" class="block text-sm font-medium text-softgray hover:text-white">FAQ</a>
+            <a href="#contact" onclick="toggleMobileMenu()" class="block text-sm font-medium text-softgray hover:text-white">Contact</a>
+            <div class="pt-2">
+                <a href="#contact" onclick="toggleMobileMenu()" class="w-full inline-flex items-center justify-center px-5 py-3 bg-crimson text-white text-xs font-bold uppercase tracking-wider rounded">
+                    Let's Talk ↗
+                </a>
+            </div>
+        </div>
+    </header>
+
+    <!-- Hero Section integrated with Dark Banner Asset -->
+    <section class="relative min-h-[90vh] flex items-center justify-center bg-obsidian py-20 overflow-hidden border-b border-bordergray">
+        <!-- Background Banner Image Asset -->
+        <div class="absolute inset-0 z-0 opacity-40">
+            <img src="Spanduk Gelap Ethernal Company.png" alt="Spanduk Gelap Ethernal" class="w-full h-full object-cover">
+            <div class="absolute inset-0 bg-gradient-to-t from-obsidian via-obsidian/60 to-obsidian"></div>
+        </div>
+
+        <div class="relative z-10 max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 w-full py-12 space-y-8 text-center flex flex-col items-center">
+            
+            <!-- Logo Gothic Centerpiece in Hero -->
+            <div class="w-48 sm:w-64 mb-2 animate-pulse">
+                <img src="Lambang Gothic Ethernal Company.png" alt="Lambang Gothic Ethernal" class="w-full h-auto drop-shadow-[0_0_15px_rgba(225,29,46,0.6)]">
+            </div>
+
+            <span class="text-xs uppercase tracking-[0.3em] font-bold text-softgray bg-deepblack/80 px-4 py-1.5 rounded-full border border-bordergray">
+                [01] — INDEPENDENT DIGITAL STUDIO EST. MMXXVI
+            </span>
+
+            <div class="space-y-4 max-w-5xl">
+                <h1 class="text-4xl sm:text-6xl lg:text-7xl font-extrabold uppercase tracking-tight leading-[1.05]">
+                    WE BUILD <span class="text-crimson">DIGITAL</span> EXPERIENCES.
+                </h1>
+                <p class="text-softgray text-base sm:text-xl font-light max-w-2xl mx-auto leading-relaxed pt-2">
+                    We design and develop high-end digital solutions that help ambitious businesses stand out, connect with their audience, and grow online.
+                </p>
+            </div>
+
+            <div class="flex flex-wrap gap-4 pt-6 justify-center">
+                <a href="#contact" class="px-8 py-4 bg-crimson hover:bg-brightred text-white text-xs font-bold uppercase tracking-wider rounded transition shadow-lg shadow-crimson/20 flex items-center gap-2">
+                    Start a Project ↗
+                </a>
+                <a href="#work" class="px-8 py-4 bg-deepblack hover:bg-bordergray text-white text-xs font-bold uppercase tracking-wider rounded transition border border-bordergray flex items-center gap-2">
+                    Explore Our Work ↓
+                </a>
+            </div>
+        </div>
+    </section>
+
+    <!-- Featured Projects (Selected Works) -->
+    <section id="work" class="py-28 bg-obsidian border-b border-bordergray">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 space-y-16">
+            <div class="flex flex-col md:flex-row md:items-end justify-between gap-4 border-b border-bordergray pb-8">
+                <div>
+                    <span class="text-xs uppercase tracking-[0.25em] text-crimson font-bold block mb-2">[SELECTED WORKS]</span>
+                    <h2 class="text-3xl sm:text-5xl font-extrabold uppercase tracking-tight">BUILT WITH INTENT.</h2>
+                </div>
+                <p class="text-softgray text-sm max-w-md">
+                    Explore our recent digital craftsmanship. Each project is crafted from scratch to align with specific brand identities and business goals. *(Demo / Conceptual Projects)*
+                </p>
+            </div>
+
+            <!-- Projects Grid -->
+            <div class="grid grid-cols-1 lg:grid-cols-2 gap-10">
+                <!-- Project 1 -->
+                <div class="project-card group bg-deepblack rounded-xl border border-bordergray overflow-hidden flex flex-col justify-between">
+                    <div class="relative aspect-[16/10] overflow-hidden bg-obsidian">
+                        <img src="https://images.unsplash.com/photo-1558769132-cb1aea458c5e?auto=format&fit=crop&w=1200&q=80" alt="Void District" class="project-img w-full h-full object-cover transition duration-700 opacity-80 group-hover:opacity-100">
+                        <div class="absolute top-4 left-4 bg-obsidian/80 backdrop-blur-sm text-white text-[10px] font-bold uppercase tracking-wider px-3 py-1 rounded border border-bordergray">
+                            Streetwear E-Commerce
+                        </div>
+                    </div>
+                    <div class="p-8 space-y-6">
+                        <div class="flex justify-between items-start">
+                            <div>
+                                <span class="text-xs text-crimson font-bold tracking-widest uppercase">01 / E-COMMERCE</span>
+                                <h3 class="text-2xl font-bold uppercase mt-1">VOID DISTRICT</h3>
+                            </div>
+                            <span class="text-xs text-softgray font-mono">2026 / DEMO</span>
+                        </div>
+                        <p class="text-softgray text-sm leading-relaxed">
+                            High-contrast immersive e-commerce platform designed for modern streetwear brands, featuring lightning-fast catalog filtering and minimalist checkout flow.
+                        </p>
+                        <div class="flex flex-wrap gap-2 pt-2">
+                            <span class="text-[10px] bg-obsidian text-softgray px-2.5 py-1 rounded border border-bordergray">HTML5</span>
+                            <span class="text-[10px] bg-obsidian text-softgray px-2.5 py-1 rounded border border-bordergray">Tailwind CSS</span>
+                            <span class="text-[10px] bg-obsidian text-softgray px-2.5 py-1 rounded border border-bordergray">JavaScript</span>
+                        </div>
+                        <div class="pt-4 border-t border-bordergray flex justify-between items-center">
+                            <button onclick="openProjectModal('Void District', 'High-contrast immersive e-commerce platform designed for modern streetwear brands.', 'https://images.unsplash.com/photo-1558769132-cb1aea458c5e?auto=format&fit=crop&w=1200&q=80')" class="text-xs font-bold uppercase tracking-wider text-white hover:text-crimson transition flex items-center gap-1">
+                                View Project ↗
+                            </button>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Project 2 -->
+                <div class="project-card group bg-deepblack rounded-xl border border-bordergray overflow-hidden flex flex-col justify-between">
+                    <div class="relative aspect-[16/10] overflow-hidden bg-obsidian">
+                        <img src="https://images.unsplash.com/photo-1534447677768-be436bb09401?auto=format&fit=crop&w=1200&q=80" alt="Aquanusa" class="project-img w-full h-full object-cover transition duration-700 opacity-80 group-hover:opacity-100">
+                        <div class="absolute top-4 left-4 bg-obsidian/80 backdrop-blur-sm text-white text-[10px] font-bold uppercase tracking-wider px-3 py-1 rounded border border-bordergray">
+                            Aquaculture & B2B Commerce
+                        </div>
+                    </div>
+                    <div class="p-8 space-y-6">
+                        <div class="flex justify-between items-start">
+                            <div>
+                                <span class="text-xs text-crimson font-bold tracking-widest uppercase">02 / WEB APP</span>
+                                <h3 class="text-2xl font-bold uppercase mt-1">AQUANUSA</h3>
+                            </div>
+                            <span class="text-xs text-softgray font-mono">2026 / DEMO</span>
+                        </div>
+                        <p class="text-softgray text-sm leading-relaxed">
+                            Digital supply chain and fish commerce platform connecting local aquaculture producers with international markets through clean data visualization.
+                        </p>
+                        <div class="flex flex-wrap gap-2 pt-2">
+                            <span class="text-[10px] bg-obsidian text-softgray px-2.5 py-1 rounded border border-bordergray">UI/UX Design</span>
+                            <span class="text-[10px] bg-obsidian text-softgray px-2.5 py-1 rounded border border-bordergray">Frontend Architecture</span>
+                        </div>
+                        <div class="pt-4 border-t border-bordergray flex justify-between items-center">
+                            <button onclick="openProjectModal('Aquanusa', 'Digital supply chain and fish commerce platform connecting local aquaculture producers.', 'https://images.unsplash.com/photo-1534447677768-be436bb09401?auto=format&fit=crop&w=1200&q=80')" class="text-xs font-bold uppercase tracking-wider text-white hover:text-crimson transition flex items-center gap-1">
+                                View Project ↗
+                            </button>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Project 3 -->
+                <div class="project-card group bg-deepblack rounded-xl border border-bordergray overflow-hidden flex flex-col justify-between">
+                    <div class="relative aspect-[16/10] overflow-hidden bg-obsidian">
+                        <img src="https://images.unsplash.com/photo-1600585154340-be6161a56a0c?auto=format&fit=crop&w=1200&q=80" alt="Nestara Residence" class="project-img w-full h-full object-cover transition duration-700 opacity-80 group-hover:opacity-100">
+                        <div class="absolute top-4 left-4 bg-obsidian/80 backdrop-blur-sm text-white text-[10px] font-bold uppercase tracking-wider px-3 py-1 rounded border border-bordergray">
+                            Real Estate Website
+                        </div>
+                    </div>
+                    <div class="p-8 space-y-6">
+                        <div class="flex justify-between items-start">
+                            <div>
+                                <span class="text-xs text-crimson font-bold tracking-widest uppercase">03 / REAL ESTATE</span>
+                                <h3 class="text-2xl font-bold uppercase mt-1">NESTARA RESIDENCE</h3>
+                            </div>
+                            <span class="text-xs text-softgray font-mono">2026 / DEMO</span>
+                        </div>
+                        <p class="text-softgray text-sm leading-relaxed">
+                            Premium architectural editorial web application featuring interactive property catalog, mortgage calculator, and direct lead generation.
+                        </p>
+                        <div class="flex flex-wrap gap-2 pt-2">
+                            <span class="text-[10px] bg-obsidian text-softgray px-2.5 py-1 rounded border border-bordergray">Vanilla JS</span>
+                            <span class="text-[10px] bg-obsidian text-softgray px-2.5 py-1 rounded border border-bordergray">Interactive Calculator</span>
+                        </div>
+                        <div class="pt-4 border-t border-bordergray flex justify-between items-center">
+                            <button onclick="openProjectModal('Nestara Residence', 'Premium architectural editorial web application featuring interactive property catalog and mortgage calculator.', 'https://images.unsplash.com/photo-1600585154340-be6161a56a0c?auto=format&fit=crop&w=1200&q=80')" class="text-xs font-bold uppercase tracking-wider text-white hover:text-crimson transition flex items-center gap-1">
+                                View Project ↗
+                            </button>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Project 4 -->
+                <div class="project-card group bg-deepblack rounded-xl border border-bordergray overflow-hidden flex flex-col justify-between">
+                    <div class="relative aspect-[16/10] overflow-hidden bg-obsidian">
+                        <img src="https://images.unsplash.com/photo-1586528116311-ad8dd3c8310d?auto=format&fit=crop&w=1200&q=80" alt="Agrimarket" class="project-img w-full h-full object-cover transition duration-700 opacity-80 group-hover:opacity-100">
+                        <div class="absolute top-4 left-4 bg-obsidian/80 backdrop-blur-sm text-white text-[10px] font-bold uppercase tracking-wider px-3 py-1 rounded border border-bordergray">
+                            Agriculture Marketplace
+                        </div>
+                    </div>
+                    <div class="p-8 space-y-6">
+                        <div class="flex justify-between items-start">
+                            <div>
+                                <span class="text-xs text-crimson font-bold tracking-widest uppercase">04 / MARKETPLACE</span>
+                                <h3 class="text-2xl font-bold uppercase mt-1">AGRIMARKET</h3>
+                            </div>
+                            <span class="text-xs text-softgray font-mono">2026 / DEMO</span>
+                        </div>
+                        <p class="text-softgray text-sm leading-relaxed">
+                            B2B agricultural produce marketplace designed for bulk distributors, featuring transparent pricing and structured inventory management.
+                        </p>
+                        <div class="flex flex-wrap gap-2 pt-2">
+                            <span class="text-[10px] bg-obsidian text-softgray px-2.5 py-1 rounded border border-bordergray">UI/UX Strategy</span>
+                            <span class="text-[10px] bg-obsidian text-softgray px-2.5 py-1 rounded border border-bordergray">Responsive Design</span>
+                        </div>
+                        <div class="pt-4 border-t border-bordergray flex justify-between items-center">
+                            <button onclick="openProjectModal('Agrimarket', 'B2B agricultural produce marketplace designed for bulk distributors with transparent pricing.', 'https://images.unsplash.com/photo-1586528116311-ad8dd3c8310d?auto=format&fit=crop&w=1200&q=80')" class="text-xs font-bold uppercase tracking-wider text-white hover:text-crimson transition flex items-center gap-1">
+                                View Project ↗
+                            </button>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Services Section -->
+    <section id="services" class="py-28 bg-deepblack border-b border-bordergray">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 space-y-16">
+            <div class="border-b border-bordergray pb-8">
+                <span class="text-xs uppercase tracking-[0.25em] text-crimson font-bold block mb-2">[WHAT WE DO]</span>
+                <h2 class="text-3xl sm:text-5xl font-extrabold uppercase tracking-tight">OUR DIGITAL CAPABILITIES.</h2>
+            </div>
+
+            <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
+                <!-- Service 1 -->
+                <div class="p-8 bg-obsidian rounded-xl border border-bordergray space-y-6 hover:border-crimson transition duration-300">
+                    <span class="text-4xl font-extrabold text-crimson font-mono">01</span>
+                    <h3 class="text-xl font-bold uppercase">Website Development</h3>
+                    <p class="text-softgray text-sm leading-relaxed">
+                        Website bisnis profesional yang dirancang sesuai identitas dan kebutuhan perusahaan dengan performa tinggi dan struktur semantik yang bersih.
+                    </p>
+                </div>
+                <!-- Service 2 -->
+                <div class="p-8 bg-obsidian rounded-xl border border-bordergray space-y-6 hover:border-crimson transition duration-300">
+                    <span class="text-4xl font-extrabold text-crimson font-mono">02</span>
+                    <h3 class="text-xl font-bold uppercase">UI/UX Design</h3>
+                    <p class="text-softgray text-sm leading-relaxed">
+                        Desain antarmuka yang modern, konsisten, intuitif, dan responsif untuk memastikan pengguna mendapatkan pengalaman digital terbaik.
+                    </p>
+                </div>
+                <!-- Service 3 -->
+                <div class="p-8 bg-obsidian rounded-xl border border-bordergray space-y-6 hover:border-crimson transition duration-300">
+                    <span class="text-4xl font-extrabold text-crimson font-mono">03</span>
+                    <h3 class="text-xl font-bold uppercase">E-Commerce Website</h3>
+                    <p class="text-softgray text-sm leading-relaxed">
+                        Pengalaman katalog dan belanja online yang dioptimalkan untuk kenyamanan transaksi dan konversi penjualan produk Anda.
+                    </p>
+                </div>
+                <!-- Service 4 -->
+                <div class="p-8 bg-obsidian rounded-xl border border-bordergray space-y-6 hover:border-crimson transition duration-300">
+                    <span class="text-4xl font-extrabold text-crimson font-mono">04</span>
+                    <h3 class="text-xl font-bold uppercase">Landing Page</h3>
+                    <p class="text-softgray text-sm leading-relaxed">
+                        Halaman pemasaran berdaya cengkeram tinggi yang fokus menyampaikan pesan brand serta mengonversi pengunjung menjadi prospek.
+                    </p>
+                </div>
+                <!-- Service 5 -->
+                <div class="p-8 bg-obsidian rounded-xl border border-bordergray space-y-6 hover:border-crimson transition duration-300">
+                    <span class="text-4xl font-extrabold text-crimson font-mono">05</span>
+                    <h3 class="text-xl font-bold uppercase">Website Redesign</h3>
+                    <p class="text-softgray text-sm leading-relaxed">
+                        Peningkatan tampilan, struktur, responsivitas, dan pengalaman pengguna website lama agar sejajar dengan standar digital modern.
+                    </p>
+                </div>
+                <!-- Service 6 -->
+                <div class="p-8 bg-obsidian rounded-xl border border-bordergray space-y-6 hover:border-crimson transition duration-300">
+                    <span class="text-4xl font-extrabold text-crimson font-mono">06</span>
+                    <h3 class="text-xl font-bold uppercase">Website Maintenance</h3>
+                    <p class="text-softgray text-sm leading-relaxed">
+                        Dukungan pemeliharaan berkala sesuai cakupan layanan dan kesepakatan proyek untuk memastikan website selalu prima.
+                    </p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Brand Statement Section -->
+    <section class="py-32 bg-crimson text-white">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 text-center space-y-8">
+            <span class="text-xs uppercase tracking-[0.3em] font-bold text-obsidian bg-white/10 px-4 py-1.5 rounded-full inline-block">
+                THE ETHERNAL PHILOSOPHY
+            </span>
+            <h2 class="text-3xl sm:text-6xl font-extrabold uppercase tracking-tight max-w-5xl mx-auto leading-tight">
+                “GOOD DESIGN GETS ATTENTION. GREAT DIGITAL EXPERIENCES MAKE IT MATTER.”
+            </h2>
+            <p class="text-white/90 text-base sm:text-lg max-w-2xl mx-auto font-light leading-relaxed">
+                Setiap proyek dikembangkan dengan pendekatan strategis yang mempertimbangkan tujuan bisnis, karakter brand, kebutuhan pengguna, dan pengalaman lintas perangkat.
+            </p>
+        </div>
+    </section>
+
+    <!-- Working Process Section -->
+    <section id="process" class="py-28 bg-obsidian border-b border-bordergray">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 space-y-16">
+            <div class="border-b border-bordergray pb-8">
+                <span class="text-xs uppercase tracking-[0.25em] text-crimson font-bold block mb-2">[WORKING PROCESS]</span>
+                <h2 class="text-3xl sm:text-5xl font-extrabold uppercase tracking-tight">FROM IDEA TO DIGITAL REALITY.</h2>
+            </div>
+
+            <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-8">
+                <div class="p-8 bg-deepblack rounded-xl border border-bordergray space-y-4">
+                    <span class="text-3xl font-mono font-bold text-crimson">01</span>
+                    <h3 class="text-lg font-bold uppercase">DISCOVER</h3>
+                    <p class="text-softgray text-xs leading-relaxed">Memahami bisnis, tujuan, target audiens, dan kebutuhan proyek secara mendalam.</p>
+                </div>
+                <div class="p-8 bg-deepblack rounded-xl border border-bordergray space-y-4">
+                    <span class="text-3xl font-mono font-bold text-crimson">02</span>
+                    <h3 class="text-lg font-bold uppercase">DESIGN</h3>
+                    <p class="text-softgray text-xs leading-relaxed">Menyusun struktur halaman, user experience, visual direction, dan desain antarmuka.</p>
+                </div>
+                <div class="p-8 bg-deepblack rounded-xl border border-bordergray space-y-4">
+                    <span class="text-3xl font-mono font-bold text-crimson">03</span>
+                    <h3 class="text-lg font-bold uppercase">DEVELOP</h3>
+                    <p class="text-softgray text-xs leading-relaxed">Mengimplementasikan desain menjadi website responsif dengan fitur sesuai ruang lingkup.</p>
+                </div>
+                <div class="p-8 bg-deepblack rounded-xl border border-bordergray space-y-4">
+                    <span class="text-3xl font-mono font-bold text-crimson">04</span>
+                    <h3 class="text-lg font-bold uppercase">DELIVER</h3>
+                    <p class="text-softgray text-xs leading-relaxed">Melakukan pengujian, revisi yang disepakati, dan serah terima hasil proyek.</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Why Ethernal (About Section) -->
+    <section id="about" class="py-28 bg-deepblack border-b border-bordergray">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="grid grid-cols-1 lg:grid-cols-12 gap-12 items-center">
+                <div class="lg:col-span-6 space-y-6">
+                    <span class="text-xs uppercase tracking-[0.25em] text-crimson font-bold block">[WHY ETHERNAL]</span>
+                    <h2 class="text-3xl sm:text-5xl font-extrabold uppercase tracking-tight leading-tight">
+                        BUILT DIFFERENT. <br>BUILT WITH PURPOSE.
+                    </h2>
+                    <p class="text-softgray text-sm leading-relaxed">
+                        Kami bukan sekadar pembuat template generik. Ethernal Company beroperasi sebagai studio digital independen yang memprioritaskan estetika tingkat tinggi dan fungsi nyata bagi bisnis Anda.
+                    </p>
+                    <ul class="space-y-4 pt-2 text-sm text-softgray">
+                        <li class="flex items-center gap-3">
+                            <span class="w-1.5 h-1.5 rounded-full bg-crimson"></span>
+                            <strong class="text-white">Custom Design</strong> — Bukan sekadar mengganti warna template standar.
+                        </li>
+                        <li class="flex items-center gap-3">
+                            <span class="w-1.5 h-1.5 rounded-full bg-crimson"></span>
+                            <strong class="text-white">Responsive Experience</strong> — Dioptimalkan untuk desktop, tablet, dan smartphone.
+                        </li>
+                        <li class="flex items-center gap-3">
+                            <span class="w-1.5 h-1.5 rounded-full bg-crimson"></span>
+                            <strong class="text-white">Clear Communication</strong> — Proses dan ruang lingkup pekerjaan yang transparan.
+                        </li>
+                        <li class="flex items-center gap-3">
+                            <span class="w-1.5 h-1.5 rounded-full bg-crimson"></span>
+                            <strong class="text-white">Business-Oriented</strong> — Desain yang dirancang untuk mendukung tujuan komersial.
+                        </li>
+                    </ul>
+                </div>
+                <div class="lg:col-span-6 relative">
+                    <div class="aspect-[4/3] rounded-xl overflow-hidden border border-bordergray bg-obsidian">
+                        <img src="https://images.unsplash.com/photo-1522071820081-009f0129c71c?auto=format&fit=crop&w=1000&q=80" alt="Team Work" class="w-full h-full object-cover opacity-70">
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- FAQ Section -->
+    <section id="faq" class="py-28 bg-obsidian border-b border-bordergray">
+        <div class="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8 space-y-16">
+            <div class="text-center space-y-4">
+                <span class="text-xs uppercase tracking-[0.25em] text-crimson font-bold block">[FAQ]</span>
+                <h2 class="text-3xl sm:text-5xl font-extrabold uppercase tracking-tight">FREQUENTLY ASKED QUESTIONS</h2>
+            </div>
+
+            <div class="space-y-4">
+                <!-- FAQ 1 -->
+                <div class="border border-bordergray rounded-lg overflow-hidden bg-deepblack">
+                    <button onclick="toggleFaq(this)" class="w-full px-6 py-5 text-left font-bold text-sm uppercase flex justify-between items-center hover:bg-bordergray/20 transition">
+                        <span>Berapa biaya pembuatan website?</span>
+                        <svg class="w-5 h-5 transform transition-transform duration-300 text-crimson" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 9l-7 7-7-7"/></svg>
+                    </button>
+                    <div class="hidden px-6 py-4 text-xs text-softgray bg-obsidian border-t border-bordergray leading-relaxed">
+                        Biaya pembuatan website ditentukan berdasarkan kompleksitas, ruang lingkup proyek, fitur, dan kebutuhan spesifik bisnis Anda setelah sesi konsultasi awal.
+                    </div>
+                </div>
+                <!-- FAQ 2 -->
+                <div class="border border-bordergray rounded-lg overflow-hidden bg-deepblack">
+                    <button onclick="toggleFaq(this)" class="w-full px-6 py-5 text-left font-bold text-sm uppercase flex justify-between items-center hover:bg-bordergray/20 transition">
+                        <span>Apakah desain bisa dibuat sesuai permintaan?</span>
+                        <svg class="w-5 h-5 transform transition-transform duration-300 text-crimson" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 9l-7 7-7-7"/></svg>
+                    </button>
+                    <div class="hidden px-6 py-4 text-xs text-softgray bg-obsidian border-t border-bordergray leading-relaxed">
+                        Ya. Setiap proyek dirancang khusus (custom design) dari nol sesuai identitas brand, preferensi estetika, dan arahan visual yang disepakati.
+                    </div>
+                </div>
+                <!-- FAQ 3 -->
+                <div class="border border-bordergray rounded-lg overflow-hidden bg-deepblack">
+                    <button onclick="toggleFaq(this)" class="w-full px-6 py-5 text-left font-bold text-sm uppercase flex justify-between items-center hover:bg-bordergray/20 transition">
+                        <span>Apakah website dapat dibuka melalui smartphone?</span>
+                        <svg class="w-5 h-5 transform transition-transform duration-300 text-crimson" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 9l-7 7-7-7"/></svg>
+                    </button>
+                    <div class="hidden px-6 py-4 text-xs text-softgray bg-obsidian border-t border-bordergray leading-relaxed">
+                        Tentu saja. Seluruh website yang kami kembangkan sepenuhnya responsif dan diuji di berbagai ukuran layar mulai dari desktop, tablet, hingga smartphone.
+                    </div>
+                </div>
+                <!-- FAQ 4 -->
+                <div class="border border-bordergray rounded-lg overflow-hidden bg-deepblack">
+                    <button onclick="toggleFaq(this)" class="w-full px-6 py-5 text-left font-bold text-sm uppercase flex justify-between items-center hover:bg-bordergray/20 transition">
+                        <span>Apakah website dapat menggunakan domain sendiri?</span>
+                        <svg class="w-5 h-5 transform transition-transform duration-300 text-crimson" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 9l-7 7-7-7"/></svg>
+                    </button>
+                    <div class="hidden px-6 py-4 text-xs text-softgray bg-obsidian border-t border-bordergray leading-relaxed">
+                        Ya, Anda dapat menggunakan domain milik sendiri (misal: namabisnis.com) atau kami bantu proses pendaftarannya sesuai kebutuhan.
+                    </div>
+                </div>
+                <!-- FAQ 5 -->
+                <div class="border border-bordergray rounded-lg overflow-hidden bg-deepblack">
+                    <button onclick="toggleFaq(this)" class="w-full px-6 py-5 text-left font-bold text-sm uppercase flex justify-between items-center hover:bg-bordergray/20 transition">
+                        <span>Apakah layanan mencakup hosting?</span>
+                        <svg class="w-5 h-5 transform transition-transform duration-300 text-crimson" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 9l-7 7-7-7"/></svg>
+                    </button>
+                    <div class="hidden px-6 py-4 text-xs text-softgray bg-obsidian border-t border-bordergray leading-relaxed">
+                        Pengaturan hosting dan infrastruktur server disesuaikan dengan kesepakatan cakupan proyek atau dapat diintegrasikan langsung ke server milik klien.
+                    </div>
+                </div>
+                <!-- FAQ 6 -->
+                <div class="border border-bordergray rounded-lg overflow-hidden bg-deepblack">
+                    <button onclick="toggleFaq(this)" class="w-full px-6 py-5 text-left font-bold text-sm uppercase flex justify-between items-center hover:bg-bordergray/20 transition">
+                        <span>Berapa lama proses pengerjaan?</span>
+                        <svg class="w-5 h-5 transform transition-transform duration-300 text-crimson" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 9l-7 7-7-7"/></svg>
+                    </button>
+                    <div class="hidden px-6 py-4 text-xs text-softgray bg-obsidian border-t border-bordergray leading-relaxed">
+                        Waktu pengerjaan bervariasi dari 2 hingga 6 minggu tergantung pada kerumitan desain, skala halaman, dan fitur yang dibutuhkan.
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Contact & Project Inquiry Section -->
+    <section id="contact" class="py-28 bg-deepblack">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="grid grid-cols-1 lg:grid-cols-12 gap-12 items-start">
+                <div class="lg:col-span-5 space-y-6">
+                    <span class="text-xs uppercase tracking-[0.25em] text-crimson font-bold block">[GET IN TOUCH]</span>
+                    <h2 class="text-3xl sm:text-5xl font-extrabold uppercase tracking-tight leading-tight">
+                        LET'S BUILD SOMETHING THAT MATTERS.
+                    </h2>
+                    <p class="text-softgray text-sm leading-relaxed">
+                        Tell us about your business, your idea, and what you want to build. Let's turn it into a digital experience.
+                    </p>
+                    <div class="space-y-3 pt-4 text-xs text-softgray font-mono">
+                        <div>EMAIL: inquiry@ethernal.co</div>
+                        <div>STUDIO: Independent Digital Studio</div>
+                    </div>
+                </div>
+
+                <div class="lg:col-span-7 bg-obsidian p-8 sm:p-10 rounded-xl border border-bordergray">
+                    <form id="inquiry-form" onsubmit="handleInquirySubmit(event)" class="space-y-5 text-xs">
+                        <div class="grid grid-cols-1 sm:grid-cols-2 gap-4">
+                            <div>
+                                <label class="block font-bold uppercase mb-2 text-softgray">Nama Lengkap *</label>
+                                <input type="text" id="inquiry-name" required class="w-full px-4 py-3 bg-deepblack border border-bordergray rounded text-white focus:outline-none focus:border-crimson" placeholder="cth: Budi Santoso">
+                            </div>
+                            <div>
+                                <label class="block font-bold uppercase mb-2 text-softgray">Nama Bisnis / Perusahaan *</label>
+                                <input type="text" id="inquiry-business" required class="w-full px-4 py-3 bg-deepblack border border-bordergray rounded text-white focus:outline-none focus:border-crimson" placeholder="cth: PT Maju Bersama">
+                            </div>
+                        </div>
+
+                        <div class="grid grid-cols-1 sm:grid-cols-2 gap-4">
+                            <div>
+                                <label class="block font-bold uppercase mb-2 text-softgray">Email / Kontak *</label>
+                                <input type="text" id="inquiry-contact" required class="w-full px-4 py-3 bg-deepblack border border-bordergray rounded text-white focus:outline-none focus:border-crimson" placeholder="budi@example.com / WhatsApp">
+                            </div>
+                            <div>
+                                <label class="block font-bold uppercase mb-2 text-softgray">Jenis Layanan</label>
+                                <select id="inquiry-service" class="w-full px-4 py-3 bg-deepblack border border-bordergray rounded text-white focus:outline-none focus:border-crimson">
+                                    <option value="Website Development">Website Development</option>
+                                    <option value="UI/UX Design">UI/UX Design</option>
+                                    <option value="E-Commerce Website">E-Commerce Website</option>
+                                    <option value="Landing Page">Landing Page</option>
+                                    <option value="Website Redesign">Website Redesign</option>
+                                    <option value="Website Maintenance">Website Maintenance</option>
+                                </select>
+                            </div>
+                        </div>
+
+                        <div>
+                            <label class="block font-bold uppercase mb-2 text-softgray">Deskripsi Proyek & Kebutuhan *</label>
+                            <textarea id="inquiry-message" rows="4" required class="w-full px-4 py-3 bg-deepblack border border-bordergray rounded text-white focus:outline-none focus:border-crimson" placeholder="Ceritakan singkat mengenai bisnis dan website yang ingin Anda bangun..."></textarea>
+                        </div>
+
+                        <p class="text-[10px] text-softgray italic">
+                            *Catatan Demo: Karena halaman ini berbasis frontend-only, formulir ini divalidasi secara lokal dan dapat diarahkan langsung ke WhatsApp resmi kami.
+                        </p>
+
+                        <button type="submit" class="w-full py-4 bg-crimson hover:bg-brightred text-white font-bold uppercase tracking-wider rounded transition shadow-lg shadow-crimson/20">
+                            Send Project Inquiry ↗
+                        </button>
+                    </form>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer class="bg-obsidian border-t border-bordergray py-16">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 space-y-12">
+            <div class="flex flex-col md:flex-row justify-between items-start md:items-center gap-6">
+                <div>
+                    <div class="flex items-center gap-3 mb-2">
+                        <img src="Lambang Gothic Ethernal Company.png" alt="Logo Ethernal" class="h-6 w-auto object-contain">
+                        <span class="font-extrabold text-2xl tracking-wider text-white">ETHERNAL<span class="text-crimson">.</span></span>
+                    </div>
+                    <p class="text-softgray text-xs">MORE THAN JUST CLOTHES, IT'S A DIGITAL LIFESTYLE.</p>
+                </div>
+                <div class="flex flex-wrap gap-8 text-xs font-bold uppercase text-softgray">
+                    <a href="#work" class="hover:text-white transition">Work</a>
+                    <a href="#services" class="hover:text-white transition">Services</a>
+                    <a href="#about" class="hover:text-white transition">About</a>
+                    <a href="#process" class="hover:text-white transition">Process</a>
+                    <a href="#faq" class="hover:text-white transition">FAQ</a>
+                    <a href="#contact" class="hover:text-white transition">Contact</a>
+                </div>
+            </div>
+
+            <div class="border-t border-bordergray pt-8 flex flex-col sm:flex-row justify-between items-center text-xs text-softgray gap-4">
+                <div>© 2026 Ethernal Company (ethernal.co). All rights reserved.</div>
+                <div class="font-mono text-[10px] text-crimson">DESIGNED WITH INTENT. BUILT WITH PURPOSE.</div>
+            </div>
+        </div>
+    </footer>
+
+    <!-- Project Detail Modal -->
+    <div id="project-modal" class="fixed inset-0 z-50 bg-obsidian/90 backdrop-blur-md hidden flex items-center justify-center p-4 overflow-y-auto">
+        <div class="bg-deepblack rounded-xl max-w-2xl w-full max-h-[90vh] overflow-y-auto border border-bordergray relative p-8 space-y-6">
+            <button onclick="closeProjectModal()" class="absolute top-4 right-4 w-8 h-8 rounded bg-obsidian text-white flex items-center justify-center hover:bg-crimson transition">✕</button>
+            <div id="modal-body" class="space-y-6">
+                <!-- Injected via JS -->
+            </div>
+        </div>
+    </div>
+
+    <!-- Script Applications -->
+    <script>
+        // Toast Notification
+        function showToast(message) {
+            const container = document.getElementById('toast-container');
+            const toast = document.createElement('div');
+            toast.className = 'bg-deepblack text-white text-xs px-4 py-3 rounded border border-crimson shadow-2xl animate-in fade-in duration-300';
+            toast.innerText = message;
+            container.appendChild(toast);
+            setTimeout(() => {
+                toast.classList.add('opacity-0', 'transition-opacity');
+                setTimeout(() => toast.remove(), 300);
+            }, 3000);
+        }
+
+        // Mobile Menu Toggle
+        function toggleMobileMenu() {
+            const menu = document.getElementById('mobile-menu');
+            menu.classList.toggle('hidden');
+        }
+
+        // FAQ Accordion
+        function toggleFaq(btn) {
+            const content = btn.nextElementSibling;
+            const icon = btn.querySelector('svg');
+            content.classList.toggle('hidden');
+            icon.classList.toggle('rotate-180');
+        }
+
+        // Project Modal
+        function openProjectModal(title, desc, img) {
+            const body = document.getElementById('modal-body');
+            body.innerHTML = `
+                <span class="text-xs text-crimson font-bold uppercase tracking-widest">[CONCEPTUAL PROJECT VIEW]</span>
+                <h3 class="text-2xl font-bold uppercase text-white">${title}</h3>
+                <div class="aspect-[16/9] rounded-lg overflow-hidden border border-bordergray bg-obsidian">
+                    <img src="${img}" class="w-full h-full object-cover">
+                </div>
+                <p class="text-softgray text-sm leading-relaxed">${desc}</p>
+                <div class="pt-4 border-t border-bordergray flex justify-end">
+                    <a href="#contact" onclick="closeProjectModal()" class="px-6 py-2.5 bg-crimson text-white text-xs font-bold uppercase tracking-wider rounded">
+                        Inquire Similar Project ↗
+                    </a>
+                </div>
+            `;
+            document.getElementById('project-modal').classList.remove('hidden');
+        }
+
+        function closeProjectModal() {
+            document.getElementById('project-modal').classList.add('hidden');
+        }
+
+        // Inquiry Form Submission (WhatsApp Handoff / Demo Mode)
+        function handleInquirySubmit(e) {
+            e.preventDefault();
+            const name = document.getElementById('inquiry-name').value;
+            const business = document.getElementById('inquiry-business').value;
+            const contact = document.getElementById('inquiry-contact').value;
+            const service = document.getElementById('inquiry-service').value;
+            const message = document.getElementById('inquiry-message').value;
+
+            const waText = `Halo Ethernal Company,\n\nNama: ${name}\nBisnis: ${business}\nKontak: ${contact}\nLayanan: ${service}\nPesan: ${message}`;
+            const encodedText = encodeURIComponent(waText);
+            const waUrl = `https://wa.me/6281234567890?text=${encodedText}`;
+
+            showToast("Inquiry berhasil divalidasi. Mengarahkan ke WhatsApp resmi...");
+            setTimeout(() => {
+                window.open(waUrl, '_blank');
+            }, 1000);
+        }
+    </script>
+</body>
+</html>
